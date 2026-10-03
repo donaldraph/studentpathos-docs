@@ -179,7 +179,7 @@ Oct 1, 2026 20:05:43 UTC - StudentPathOS-API (API Gateway + AppSync)
 **User instruction:** "commit message style should read very human, and commit should be often rather than on giant big commit"
 
 **Examples from actual commits:**
-- ✅ "swap DuckDuckGo hack for Exa search -- matches workshop architecture"
+- ✅ "swap DuckDuckGo hack for Exa search"
 - ✅ "switch chat back to API Gateway -- function URL blocked by account policy"
 - ✅ "give the agent actual eyes on the internet + fix raw asterisks"
 - ✅ "wire up the bedrock guardrail because we need to block toxic prompts and anonymize leaked credentials"
