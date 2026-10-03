@@ -18,4 +18,4 @@ Complete build documentation for the StudentPathOS hackathon project.
 3. Paste into new Claude conversation
 4. Start building!
 
-Built with Claude Code via Kiro
+Built with Claude Code

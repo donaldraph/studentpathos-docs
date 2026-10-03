@@ -834,7 +834,7 @@ cp .env.example .env
 cd infrastructure
 npm run build
 
-# 5. Deploy (with Kiro)
+# 5. Deploy (with Claude Code)
 cdk deploy --all --require-approval never
 
 # 6. Seed knowledge base

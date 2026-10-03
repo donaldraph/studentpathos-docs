@@ -68,7 +68,7 @@ polish the whole stack -- custom icon, voice, rekognition, real analytics, progr
 Commit: 2aed94b
 
 Oct 2, 2026 - 12:53:24 +0100
-real agentic loop -- search then crawl then think, like the BeSA agent
+real agentic loop -- search then crawl then think
 Commit: 1467ed9
 
 Oct 2, 2026 - 12:56:06 +0100

@@ -46,12 +46,12 @@ This prompt contains EVERYTHING needed to build StudentPathOS from scratch:
    - Git author: donaldraph
    - GitHub repo: https://github.com/donaldraph/studentpathos
    - Commit often with human messages
-   - All commits: "built with claude code via kiro"
+   - All commits: "built with claude code"
    ```
 
 6. **Claude will start building** step-by-step
 
-### Option 2: Use With Claude Code (Kiro)
+### Option 2: Use With Claude Code
 
 ```bash
 # In terminal with Claude Code
@@ -140,7 +140,7 @@ When working with Claude, remind it:
    ```
    Every commit ends with:
    
-   built with claude code via kiro
+   built with claude code
    ```
 
 5. **GitHub repository:**

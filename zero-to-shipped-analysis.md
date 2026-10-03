@@ -114,7 +114,7 @@ AI: Amazon Bedrock (Claude, Nova)
 ## 3. CODING AGENT PATTERNS
 
 ### Agent Types Used:
-1. **Kiro** (most mentioned - 15+ projects)
+1. **Claude Code** (most mentioned - 15+ projects)
    - Connected via AWS MCP Server
    - Full AWS console access
    - Examples: re:Invent Planner, DeploySentinel AI, AgentSentry
@@ -243,7 +243,7 @@ AI: Amazon Bedrock (Claude, Nova)
 
 **Storytelling:**
 10. **Compelling narrative**
-    - "Built end-to-end with Kiro as coding agent"
+    - "Built end-to-end with Claude Code as coding agent"
     - "From 3am incident to clean postmortem in seconds"
     - "Every family deserves flood preparedness in Tamil"
 
@@ -407,14 +407,14 @@ Analytics: QuickSight (municipal dashboard)
 ```
 
 ### Coding Agent Story:
-- Kiro via AWS MCP generates entire CDK infrastructure
+- Claude Code via AWS MCP generates entire CDK infrastructure
 - Agent writes Lambda functions for:
   - Material classification pipeline
   - Chain-of-custody tracking
   - Impact calculation engine
   - QR code generation
 - Show CloudTrail logs of agent API calls
-- Git commits attributed to Kiro
+- Git commits attributed to Claude Code
 
 ### Why This Wins:
 

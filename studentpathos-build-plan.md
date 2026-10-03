@@ -5,7 +5,7 @@
 **Goal:** Build a complete AI-powered AWS Student Onboarding Intelligence system in 7 days  
 **Submission Deadline:** October 2, 2026, 11:59 PM PDT  
 **Live URL Required:** Yes (AWS Amplify deployment)  
-**Coding Agent Required:** Yes (Kiro via AWS MCP - documented proof)
+**Coding Agent Required:** Yes (Claude Code - documented proof)
 
 ---
 
@@ -232,11 +232,11 @@
 
 #### Afternoon (3 hours):
 - [ ] **Coding Agent Proof Documentation:**
-  - [ ] Screenshot CloudTrail logs showing Kiro API calls
+  - [ ] Screenshot CloudTrail logs showing Claude Code API calls
   - [ ] Git commit history with agent attribution
-  - [ ] Video recording: Kiro generating CDK code
+  - [ ] Video recording: Claude Code generating CDK code
   - [ ] Document: "How the AI Agent Built This"
-  - [ ] Show terminal session with Kiro commands
+  - [ ] Show terminal session with Claude Code commands
 - [ ] Create demo video (5 minutes):
   - Problem statement
   - Live demo of solution
@@ -320,7 +320,7 @@ cdk output
 
 ### Act 3: Technology (1 minute)
 - Show architecture diagram (animated)
-- "Built with Claude Code (Kiro) connected to AWS"
+- "Built with Claude Code connected to AWS"
 - Show CloudTrail: Agent creating resources
 - "Bedrock Agents + Step Functions + DynamoDB"
 - "10 custom tools, multi-service orchestration"

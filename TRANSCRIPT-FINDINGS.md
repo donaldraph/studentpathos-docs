@@ -113,15 +113,13 @@ Added to all Lambda return paths (success, error, validation).
 
 ### The Exa Integration
 
-**API Key:** 6a061e33-2294-4098-861c-6311da6af782
-
 **Why Exa instead of DuckDuckGo:**
 - Original plan: DuckDuckGo API
 - Problem: Called it a "hack" in the notes
-- Better alternative: Exa (same search engine used in BeSA workshop)
-- Benefit: Matches official AWS workshop architecture
+- Better alternative: Exa - purpose-built for AI agents
+- Benefit: Returns structured JSON with highlights and clean text extraction (up to 3,000 chars per URL)
 
-**Commit:** 030d821 - "swap DuckDuckGo hack for Exa search -- matches workshop architecture"
+**Commit:** 030d821 - "swap DuckDuckGo hack for Exa search"
 
 ---
 
@@ -223,20 +221,13 @@ Oct 1, 2026 20:05:43 UTC - StudentPathOS-API (API Gateway + AppSync)
 
 ---
 
-### The BeSA Workshop Influence
+### Architecture Patterns Applied
 
-**6 PDFs downloaded:** week_01 through week_06 from "Building Enterprise-Scale AI" workshop
-
-**What was extracted:**
-1. **5-layer serverless architecture:** Event Trigger → Processing → Inference → Post-Processing → Storage
+**Core serverless architecture:**
+1. **5-layer pattern:** Event Trigger → Processing → Inference → Post-Processing → Storage
 2. **Bedrock Guardrails** for AI governance (content filtering, PII detection, topic scoping)
-3. **CloudWatch custom metrics** for observability (Layer 5: Post-Processing)
+3. **CloudWatch custom metrics** for observability
 4. **Enriched API responses** (not just assistant text, but tokens + latency + tools used)
-
-**Specific implementation:**
-- Guardrails added: Week 2/3 influence
-- Metrics emitted: Week 4/5 observability patterns
-- Agent tool calling: Week 1/2 foundations
 
 ---
 
