@@ -97,11 +97,11 @@ Commit: 8b8d3bb
 ```
 
 ### Commit Message Characteristics:
-- **Human-style storytelling:** "swap DuckDuckGo hack for Exa search -- matches workshop architecture"
+- **Human-style storytelling:** "swap DuckDuckGo hack for Exa search"
 - **Explains context:** "switch chat back to API Gateway -- function URL blocked by account policy"
 - **Shows iteration:** "smarter screenshot analysis -- scoring system + bedrock vision fallback"
 - **NO conventional commits:** No "feat:", "fix:", "chore:" prefixes
-- **NO co-authorship tags:** No `Co-Authored-By: Claude Code` (agent writes as the human)
+- **Co-Authored-By tags:** Every commit includes `Co-authored-by: Claude Code <claude@anthropic.com>` (visible in git log and on GitHub)
 
 ---
 
@@ -340,9 +340,10 @@ aws dynamodb describe-table --table-name studentpathos-conversations
 3. **Consistent patterns:** All Lambda functions follow identical structure
 4. **Complete stack:** Frontend + backend + infrastructure + AI + observability in one go
 5. **Human-style commits:** Messages tell a story, not just "add feature"
-6. **Real testing:** CORS bug found and fixed in 8 minutes (commits cd022bb → 7709263)
-7. **No TODO comments:** Agent doesn't leave placeholder code
-8. **Production-ready:** Live site, real guardrails, real metrics from day 1
+6. **Co-Authored-By tags:** Every commit includes `Co-authored-by: Claude Code <claude@anthropic.com>` for explicit agent attribution
+7. **Real testing:** CORS bug found and fixed in 8 minutes (commits cd022bb → 7709263)
+8. **No TODO comments:** Agent doesn't leave placeholder code
+9. **Production-ready:** Live site, real guardrails, real metrics from day 1
 
 ---
 
