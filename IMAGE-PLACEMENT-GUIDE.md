@@ -42,7 +42,7 @@
 **Use:** Technical Architecture  
 **File:** `/home/donaldraph/Downloads/agentic_loop.png`  
 **Shows:** Input & context → Reasoning (LLM) → Pick tool → Execute tool → Update context → Output (with "Outside world" connection)  
-**Why:** Explains how the AI Twin works. Simple, visual, from AWS workshop materials.  
+**Why:** Explains how the AI Twin works. Simple, visual diagram of the agentic loop.  
 **Placement:** After "Tech Stack" or in "How the Coding Agent Built It"
 
 **Caption:**
@@ -68,7 +68,7 @@
 **Take:** Screenshot of `git log --oneline` showing 20 commits  
 **Why:** Additional proof of agent-built. Shows human-style commit messages.  
 **Example commits to highlight:**
-- "swap DuckDuckGo hack for Exa search -- matches workshop architecture"
+- "swap DuckDuckGo hack for Exa search"
 - "switch chat back to API Gateway -- function URL blocked by account policy"
 - "screenshot analyzer now sees the actual page and gives real guidance"
 
@@ -193,5 +193,5 @@ cp /home/donaldraph/Downloads/agentic_loop.png \
 
 **Agentic Loop:**
 - Explains the technical architecture simply
-- From AWS workshop materials (adds credibility)
+- Clear visual explanation of the agentic loop pattern
 - Shows you understand how agentic systems work
