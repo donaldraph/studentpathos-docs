@@ -178,7 +178,7 @@ This document contains:
 **1. Git Commit Timeline (20 commits, Oct 1-2):**
 - Oct 1, 21:09 - `🚀 deployed to aws production! all 4 stacks live`
 - Oct 2, 03:39 - `🔧 add CORS headers to Lambda response - fixes browser blocking`
-- Oct 2, 12:34 - `swap DuckDuckGo hack for Exa search -- matches workshop architecture`
+- Oct 2, 12:34 - `swap DuckDuckGo hack for Exa search`
 - Oct 2, 13:34 - `screenshot analyzer now sees the actual page and gives real guidance`
 
 Every commit has a human-style message explaining what changed and why. No "feat:" prefixes. All commits include `Co-authored-by: Claude Code <claude@anthropic.com>` for explicit agent attribution. Just a story with machine-readable proof.

@@ -30,7 +30,7 @@ Claude Code (powered by Amazon Bedrock) scaffolded the entire stack in 14 days:
 - CloudWatch custom metrics (latency, tokens, tool rounds, guardrail blocks)
 - Custom domain with HTTPS (ACM certificate + CloudFront)
 
-Every commit has a human-style message telling a story. "swap DuckDuckGo hack for Exa search -- matches workshop architecture". "switch chat back to API Gateway -- function URL blocked by account policy". 20 commits in 2 days. The CORS bug took 8 minutes from discovery to deployed fix. The agent iterated on the screenshot analyzer 4 times until it worked (hardcoded strings → Rekognition → scoring → Vision fallback).
+Every commit has a human-style message telling a story. "swap DuckDuckGo hack for Exa search". "switch chat back to API Gateway -- function URL blocked by account policy". 20 commits in 2 days. The CORS bug took 8 minutes from discovery to deployed fix. The agent iterated on the screenshot analyzer 4 times until it worked (hardcoded strings → Rekognition → scoring → Vision fallback).
 
 **Tech Stack**
 
