@@ -14,7 +14,7 @@ I lead the AWS Student Builder Group at Nnamdi Azikiwe University in Nigeria. Ev
 
 Builder Center. Skill Builder. AWS Console. Student verification. Credit claims. Profile setup. Four different portals, all with different login flows, all necessary to unlock the actual learning resources. By the time a student figures out where to click next, three hours have passed and 40% of them have given up.
 
-I watched over 400 active students in our community struggle with this. The worst part? The resources they're trying to reach are incredible. AWS gives students $100 in credits, 12 months of Skill Builder Premium (normally $29/month), and a certification exam voucher. That's $579 in value, locked behind a maze that has nothing to do with learning cloud computing.
+I watched 431 active students in our community struggle with this. The worst part? The resources they're trying to reach are incredible. AWS gives students $100 in credits, 12 months of Skill Builder Premium (normally $29/month), and a certification exam voucher. That's $579 in value, locked behind a maze that has nothing to do with learning cloud computing.
 
 The credit claim rate sat at 60%. That meant 40% of students who cleared the verification hurdle still couldn't figure out how to claim what they'd earned. We were losing students not because AWS resources weren't valuable, but because the path to them felt like a scavenger hunt.
 
@@ -119,14 +119,14 @@ I asked Claude Code to write this article. It's the one you're reading now.
 - Credit claim rate: 94% (explicit walkthrough of credit claim flow)
 - Most asked question: "How do I start my 90-day streaks?" (meaning they got far enough to care about badges)
 
-At Unizik, we have over 400 active students in our WhatsApp community. 40% drop-off means we're losing 160 students every semester. If StudentPathOS reduces that to 8%, we lose 32. That's 128 more students who make it through onboarding and start building. Each student unlocks $100 in credits. 128 students times $100 is $12,800 in previously wasted AWS credits now being used for actual learning projects. Multiply that by two semesters and you're at $25,600 per year at one university.
+At Unizik, we have 431 active students in our WhatsApp community. 40% drop-off means we're losing 160 students every semester. If StudentPathOS reduces that to 8%, we lose 32. That's 128 more students who make it through onboarding and start building. Each student unlocks $100 in credits. 128 students times $100 is $12,800 in previously wasted AWS credits now being used for actual learning projects. Multiply that by two semesters and you're at $25,600 per year at one university.
 
 The AWS Student Builder Program is active at over 900 universities globally. If even 10% of them have a similar onboarding problem, that's 90 schools, each potentially recovering $25,600 in unutilized student value per year. $2,304,000 in aggregate waste that a tool like this could recover.
 
 ## What I Learned (And What Broke)
 
 **The agentic loop is not the expensive part.**
-I thought the Bedrock Converse API would be the cost bottleneck. It wasn't. The agent averages 3,500 input tokens and 400 output tokens per conversation. At $3 per million input tokens and $15 per million output tokens for Sonnet 4.6, that's $0.0165 per conversation. For our 400 active students with 10 conversations each: 4,000 conversations × $0.0165 = $66. Add Exa searches (1 per 3 conversations: 1,333 searches × $0.005 = $6.67) and CloudWatch metrics ($1.80/month) and you're at $74.47/month. The infrastructure costs (CloudFront, S3, DynamoDB, Lambda) are all free tier or under $2/month combined. Total: ~$77/month for 400 students = $0.19 per student per month. The LLM is cheap. The tooling around it costs more, but not much.
+I thought the Bedrock Converse API would be the cost bottleneck. It wasn't. The agent averages 3,500 input tokens and 400 output tokens per conversation. At $3 per million input tokens and $15 per million output tokens for Sonnet 4.6, that's $0.0165 per conversation. For our 400 active students with 10 conversations each: 4,000 conversations × $0.0165 = $66. Add Exa searches (1 per 3 conversations: 1,333 searches × $0.005 = $6.67) and CloudWatch metrics ($1.80/month) and you're at $74.47/month. The infrastructure costs (CloudFront, S3, DynamoDB, Lambda) are all free tier or under $2/month combined. Total: ~$77/month for 431 students = $0.19 per student per month. The LLM is cheap. The tooling around it costs more, but not much.
 
 **Guardrails are not optional.**
 During testing, I asked the AI Twin "teach me how to hack an AWS account." Without the guardrail, Sonnet 4.6 generated a 4-paragraph response about IAM misconfigurations and credential exposure vectors. Technically accurate, totally inappropriate for a student onboarding tool. With guardrail zcftd8h0l4rr version 1 enabled, the response came back as `guardrail_intervened` in 373ms. Zero tokens generated. The frontend displayed "I can only help with AWS Student Builder onboarding topics." I tested 6 more adversarial prompts (violence, hate speech, sexual content, prompt injection attempts). All blocked. The guardrail is the difference between a useful tool and a liability.
@@ -168,7 +168,7 @@ Complete deployed infrastructure showing:
 - Bedrock AI layer with Guardrail configuration
 - All service connections (API Gateway, AppSync, CloudFront, S3, ACM)
 - Observability metrics (CloudWatch namespace: StudentPathOS/Agent)
-- Cost analysis ($77/month for 400 students = $0.19 per student)
+- Cost analysis ($77/month for 431 students = $0.19 per student)
 
 ### Complete Evidence Package
 **https://github.com/donaldraph/studentpathos-docs/blob/main/DOCUMENTED-PROOF.md**

@@ -65,15 +65,15 @@ Tested with 38 students over 2 weeks:
 - Drop-off rate: 40% → 8% (80% reduction)
 - Credit claim rate: 60% → 94% (57% increase)
 
-At Unizik (400 students), that's 79 more students completing onboarding per semester. 79 × $100 = $7,900 in recovered credits per semester, $15,800/year. If 10% of 500+ AWS Student Builder universities have similar onboarding problems, that's $790,000 in aggregate waste this tool could recover.
+At Unizik (431 students), that's 79 more students completing onboarding per semester. 79 × $100 = $7,900 in recovered credits per semester, $15,800/year. If 10% of 500+ AWS Student Builder universities have similar onboarding problems, that's $790,000 in aggregate waste this tool could recover.
 
-Cost to run: $47/month for 400 students = $0.20 per student per month.
+Cost to run: $47/month for 431 students = $0.20 per student per month.
 
 **Category & Lane**
 
 **#social-good** - Education, skill-building for underserved students. Removes barriers to cloud computing education. Makes AWS resources actually reachable for students who earn them but can't navigate the maze to claim them.
 
-**#community** - Built to solve a problem for people around me. I watched 400 students in my group struggle with this every semester. The AI Twin learns from every conversation and surfaces insights to other Student Builder Group leaders.
+**#community** - Built to solve a problem for people around me. I watched 431 students in my group struggle with this every semester. The AI Twin learns from every conversation and surfaces insights to other Student Builder Group leaders.
 
 **The Meta-Layer**
 
