@@ -60,7 +60,7 @@ give the agent actual eyes on the internet + fix raw asterisks
 Commit: 40e9983
 
 Oct 2, 2026 - 12:34:09 +0100
-swap DuckDuckGo hack for Exa search -- matches workshop architecture
+swap DuckDuckGo hack for Exa search
 Commit: 030d821
 
 Oct 2, 2026 - 12:44:16 +0100
