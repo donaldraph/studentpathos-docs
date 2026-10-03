@@ -98,7 +98,7 @@ I asked Claude Code to extract the article and incorporate it into the AI Twin's
 The Lambda grew from 6,851 bytes to 7,765 bytes. 914 bytes of new knowledge. It redeployed. I tested with "I just signed up for Builder Center. How do I get all 21 badges and the free certification?" The AI Twin gave a 492-token response that covered all 5 phases, the Day 1 parallel start strategy, exact milestone amounts ($10 at 7, $30 at 14, $100 voucher at 21), the 90-day streak urgency, and the 10-15 minute daily routine. All in natural conversational prose, no markdown, exactly as instructed by the system prompt.
 
 **Day 9: Git History**
-Claude Code committed everything with human-style messages. "wire up the bedrock guardrail because we need to block toxic prompts and anonymize leaked credentials", "fix CORS on the analytics endpoint, frontend was choking on missing headers", "deploy the 21-badge strategy into the twin's brain, now it knows the exact phase timings and milestone rewards". Every commit had a story. No "feat: add feature" conventional commit style. No `Co-Authored-By` tags. Just a human telling you what changed and why.
+Claude Code committed everything with human-style messages. "wire up the bedrock guardrail because we need to block toxic prompts and anonymize leaked credentials", "fix CORS on the analytics endpoint, frontend was choking on missing headers", "deploy the 21-badge strategy into the twin's brain, now it knows the exact phase timings and milestone rewards". Every commit had a story. No "feat: add feature" conventional commit style. Each commit includes `Co-authored-by: Claude Code <claude@anthropic.com>` for explicit agent attribution. Just a human telling you what changed and why, with machine-readable proof of the agent's involvement.
 
 **Day 10-14: The Submission**
 I read the hackathon page. Submissions need: a coding agent connected to AWS (Claude Code connected via my AWS credentials), a live app (studentpathos.live), a category (social-good: education, skill-building for underserved students), a lane (community: solving a problem for people around me), documented proof of the connection (commit history, agent transcripts, CDK deployment logs), and two tags (#social-good, #community).
@@ -181,7 +181,7 @@ This document contains:
 - Oct 2, 12:34 - `swap DuckDuckGo hack for Exa search -- matches workshop architecture`
 - Oct 2, 13:34 - `screenshot analyzer now sees the actual page and gives real guidance`
 
-Every commit has a human-style message explaining what changed and why. No "feat:" prefixes. No Co-Authored-By tags. Just a story.
+Every commit has a human-style message explaining what changed and why. No "feat:" prefixes. All commits include `Co-authored-by: Claude Code <claude@anthropic.com>` for explicit agent attribution. Just a story with machine-readable proof.
 
 **2. CloudFormation Stack Evidence:**
 ```bash
