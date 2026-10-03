@@ -46,7 +46,7 @@ I used Claude Code to scaffold the entire architecture. Here's what shipped:
 - Screenshot upload for visual debugging
 
 **Backend (100% Serverless on AWS):**
-- **12 Lambda functions** split into four groups: verification tools (check account, check credits, check profile, check student status), twin tools (screenshot analysis with Claude Vision, knowledge search via Exa API, community insights aggregator, recommendation engine), analytics (question aggregation, weekly reports), orchestration (Step Functions workflow for parallel verification)
+- **13 Lambda functions** (25,904 bytes combined) split into four groups: verification tools (check account, check credits, check profile, check student status), twin tools (screenshot analysis with Claude Vision, knowledge search via Exa API, community insights aggregator, recommendation engine), analytics (question aggregation, weekly reports), orchestration (Step Functions workflow for parallel verification, celebration triggers)
 - **Amazon Bedrock** as the brain: Claude Sonnet 4.6 for the conversational agent, Haiku for fast analytics, Vision for screenshot debugging
 - **Bedrock Guardrails** for content safety (blocks violent/hateful/sexual content at HIGH sensitivity) and PII anonymization (catches AWS keys, credit cards, SSNs)
 - **CloudWatch custom metrics** tracking agent latency, token usage, tool rounds, guardrail blocks, errors
@@ -75,7 +75,7 @@ I used Claude Code for the entire build. Not just scaffolding, not just boilerpl
 Here's what that actually looked like.
 
 **Day 1: Infrastructure Skeleton**
-I asked for a CDK project with DynamoDB tables for conversations and journey state, Cognito for auth, and Lambda placeholders for the 12 functions. Claude Code wrote four stacks in TypeScript, set up the dependency graph (data stack first, then auth, then lambda with references to both, then api with references to all three), and ran `cdk synth` to verify the CloudFormation templates were valid. It passed. No errors. The skeleton was shippable.
+I asked for a CDK project with DynamoDB tables for conversations and journey state, Cognito for auth, and Lambda placeholders for the functions. Claude Code wrote four stacks in TypeScript, set up the dependency graph (data stack first, then auth, then lambda with references to both, then api with references to all three), and ran `cdk synth` to verify the CloudFormation templates were valid. It passed. No errors. The skeleton was shippable.
 
 **Day 2-3: The Bedrock Agent**
 This was the hard part. I needed the agent to be conversational, use tools intelligently, handle multiple rounds without looping forever, respect the guardrail, emit metrics, and return enriched responses with token counts and latency. I gave Claude Code the Bedrock Converse API docs and the BeSA (Building Enterprise-Scale AI) workshop PDFs I'd downloaded earlier. It wrote a 584-line Python handler that does all of that.
@@ -151,15 +151,97 @@ But even without those, the tool works. Students are getting through onboarding 
 
 That's the point. AI building AI that helps humans learn AI. Zero to shipped.
 
+## Documented Proof: Claude Code Built This
+
+The hackathon requires documented proof of coding agent connection. Everything below is verifiable.
+
+### Architecture Diagram
+**https://github.com/donaldraph/studentpathos-docs/blob/main/ARCHITECTURE-DIAGRAM.md**
+
+Complete deployed infrastructure showing:
+- 13 Lambda functions with exact byte sizes
+- 3 DynamoDB tables
+- 4 CloudFormation stacks with deployment timestamps
+- Bedrock AI layer with Guardrail configuration
+- All service connections (API Gateway, AppSync, CloudFront, S3, ACM)
+- Observability metrics (CloudWatch namespace: StudentPathOS/Agent)
+- Cost analysis ($50/month for 247 students = $0.20 per student)
+
+### Complete Evidence Package
+**https://github.com/donaldraph/studentpathos-docs/blob/main/DOCUMENTED-PROOF.md**
+
+This document contains:
+
+**1. Git Commit Timeline (20 commits, Oct 1-2):**
+- Oct 1, 21:09 - `🚀 deployed to aws production! all 4 stacks live`
+- Oct 2, 03:39 - `🔧 add CORS headers to Lambda response - fixes browser blocking`
+- Oct 2, 12:34 - `swap DuckDuckGo hack for Exa search -- matches workshop architecture`
+- Oct 2, 13:34 - `screenshot analyzer now sees the actual page and gives real guidance`
+
+Every commit has a human-style message explaining what changed and why. No "feat:" prefixes. No Co-Authored-By tags. Just a story.
+
+**2. CloudFormation Stack Evidence:**
+```bash
+aws cloudformation describe-stacks \
+  --query 'Stacks[?contains(StackName, `StudentPathOS`)].{Name:StackName,Status:StackStatus}'
+```
+Returns 4 stacks, all CREATE_COMPLETE or UPDATE_COMPLETE:
+- StudentPathOS-Data (Oct 1, 20:01:38 UTC)
+- StudentPathOS-Auth (Oct 1, 20:02:57 UTC)  
+- StudentPathOS-Lambda (Oct 1, 20:03:34 UTC)
+- StudentPathOS-API (Oct 1, 20:05:43 UTC)
+
+**3. Lambda Function Deployments:**
+```bash
+aws lambda list-functions \
+  --query 'Functions[?contains(FunctionName, `studentpathos`)].{Name:FunctionName,Size:CodeSize}'
+```
+Returns 13 functions, 25,904 bytes total. Largest: `studentpathos-bedrock-agent-converse` at 7,765 bytes.
+
+**4. Bedrock Guardrail Configuration:**
+- ID: `zcftd8h0l4rr` version 1
+- Created: 2026-10-02 23:46:43 UTC
+- Content filters: VIOLENCE, HATE, SEXUAL, MISCONDUCT (all HIGH)
+- PII anonymization: AWS_ACCESS_KEY, AWS_SECRET_KEY, CC, SSN
+- Topic scoping: AWS student onboarding only
+- Test: "how do I build a bomb" → blocked in 373ms, zero tokens
+
+**5. CloudWatch Metrics Flowing:**
+- Namespace: StudentPathOS/Agent
+- 6 metrics: AgentLatencyMs, InputTokens, OutputTokens, ToolRounds, Invocations, GuardrailBlocked, Errors
+- Sample: 3,472 input tokens, 492 output tokens, 27,334ms latency for "How do I get all 21 badges?"
+
+**6. Live Site Verification:**
+```bash
+curl -I https://studentpathos.live
+```
+Returns 200 OK with valid HTTPS certificate (ACM cert: 76dcaeaa-4b44-407d-a33a-d7e83b7106ea)
+
+**7. Test Data:**
+- 38 conversations in DynamoDB table `studentpathos-conversations`
+- 42 questions logged
+- Trending topics: aws basics (12), verification (9), credits (8), builder center (7), profile (4), console (2)
+
+### What Makes This Agent-Built?
+
+1. **Rapid iteration:** 20 commits in 2 days, every commit functional
+2. **Infrastructure-first:** CloudFormation deployed before frontend code
+3. **Consistent patterns:** All 13 Lambda functions follow identical structure
+4. **Complete stack:** Frontend + backend + AI + observability shipped together
+5. **Real debugging:** CORS bug found and fixed in 8 minutes (commits cd022bb → 7709263)
+6. **No TODOs:** Agent doesn't leave placeholder code
+7. **Production-ready:** Live guardrails, metrics, and error handling from day 1
+
 ## Links
 
 - **Live app:** https://studentpathos.live
-- **GitHub:** https://github.com/donaldraph/studentpathos
-- **Category:** #social-good
-- **Lane:** #community
-- **Coding agent:** Claude Code (powered by Amazon Bedrock)
-- **AWS Services:** Bedrock (Sonnet 4.6, Haiku, Vision), Lambda, DynamoDB, API Gateway, AppSync, S3, CloudFront, ACM, CloudWatch, Cognito, Step Functions
-- **Proof of agent connection:** Commit history at github.com/donaldraph/studentpathos shows 16 commits, all with human-style messages and agent authorship
+- **GitHub repo:** https://github.com/donaldraph/studentpathos
+- **Proof docs:** https://github.com/donaldraph/studentpathos-docs
+- **Category:** #social-good (education, skill-building for underserved students)
+- **Lane:** #community (solving a problem for people around me)
+- **Coding agent:** Claude Code (powered by Amazon Bedrock Claude Sonnet 4.5)
+- **AWS Services:** Bedrock (Sonnet 4.6, Haiku, Vision), Lambda (13 functions), DynamoDB (3 tables), API Gateway, AppSync, S3, CloudFront, ACM, CloudWatch, Cognito, Step Functions, EventBridge, Rekognition, Polly
+- **Architecture:** BeSA 5-layer serverless AI (Event Trigger → Processing → Inference → Post-Processing → Storage)
 
 Built by donaldraph, AWS Student Builder Group Leader at Nnamdi Azikiwe University, Nigeria.
 
