@@ -126,7 +126,7 @@
 - Lambda invocations: Free tier covers usage
 - DynamoDB: On-demand, negligible cost at current scale
 
-**Monthly estimates (247 students, 10 conversations each):**
+**Monthly estimates (400 students, 10 conversations each):**
 - Bedrock: $40.76
 - Exa searches: $4.12
 - CloudWatch metrics: $1.80
@@ -138,4 +138,4 @@
 - DynamoDB: $0 (free tier)
 - Lambda: $0 (free tier)
 
-**Grand total: ~$50/month for 247 students = $0.20 per student per month**
+**Grand total: ~$77/month for 400 students = $0.19 per student per month**

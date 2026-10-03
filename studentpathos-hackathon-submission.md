@@ -1,4 +1,4 @@
-# How I Built an AI Onboarding Platform That Cut Student Drop-Off by 80% (And Why Claude Code Built It Better Than I Could)
+# How I Built an AI Onboarding Platform Designed to Cut Student Drop-Off by 80% (And Why Claude Code Built It Better Than I Could)
 
 **Zero to Shipped Hackathon Submission**  
 **Category:** #social-good  
@@ -14,7 +14,7 @@ I lead the AWS Student Builder Group at Nnamdi Azikiwe University in Nigeria. Ev
 
 Builder Center. Skill Builder. AWS Console. Student verification. Credit claims. Profile setup. Four different portals, all with different login flows, all necessary to unlock the actual learning resources. By the time a student figures out where to click next, three hours have passed and 40% of them have given up.
 
-I watched 247 active students in our group struggle with this. The worst part? The resources they're trying to reach are incredible. AWS gives students $100 in credits, 12 months of Skill Builder Premium (normally $29/month), and a certification exam voucher. That's $579 in value, locked behind a maze that has nothing to do with learning cloud computing.
+I watched over 400 active students in our community struggle with this. The worst part? The resources they're trying to reach are incredible. AWS gives students $100 in credits, 12 months of Skill Builder Premium (normally $29/month), and a certification exam voucher. That's $579 in value, locked behind a maze that has nothing to do with learning cloud computing.
 
 The credit claim rate sat at 60%. That meant 40% of students who cleared the verification hurdle still couldn't figure out how to claim what they'd earned. We were losing students not because AWS resources weren't valuable, but because the path to them felt like a scavenger hunt.
 
@@ -32,7 +32,7 @@ The hackathon launched September 18. I had two weeks.
 
 The AI Twin isn't a generic chatbot. It knows the difference between Builder Center and Skill Builder (most students don't). It knows that you don't need a .edu email to sign up for Builder Center, only to verify student status later (a confusion point that kills 15% of signups). It can look at a screenshot and tell you which portal you're stuck in. It tracks when you hit each milestone and celebrates with confetti when you unlock your credits.
 
-And critically, it learns from everyone. When 38 students ask variations of "where do I claim my credits," the system aggregates that into trending topics and surfaces it to group leaders. The confusion points that would normally stay invisible become visible, measurable, and fixable.
+And critically, it's designed to learn from everyone. When students ask variations of "where do I claim my credits," the system aggregates that into trending topics and surfaces it to group leaders. The confusion points that would normally stay invisible become visible, measurable, and fixable. During development testing with 38 simulated conversations, the analytics dashboard correctly categorized questions into trending topics (aws basics: 12, verification: 9, credits: 8).
 
 ## The Stack: How It Actually Works
 
@@ -42,7 +42,7 @@ I used Claude Code to scaffold the entire architecture. Here's what shipped:
 - Journey timeline that shows the 5-step onboarding flow
 - AI chat interface for the Bedrock-powered twin
 - Analytics dashboard showing trending questions across all students
-- Portal comparison cards (students kept confusing the three portals)
+- Portal comparison cards (addressing the common confusion between the three portals)
 - Screenshot upload for visual debugging
 
 **Backend (100% Serverless on AWS):**
@@ -85,7 +85,7 @@ The first version didn't emit metrics. I asked for CloudWatch observability with
 **Day 4-5: The Frontend**
 I asked for a React app with a journey timeline (5 steps: sign up, verify, claim premium, console setup, first build), an AI chat interface, a portal comparison section (Builder Center vs Skill Builder vs Console), and an analytics dashboard. Claude Code scaffolded the component tree, set up Zustand for state management, wrote the API client with axios, and deployed the build to S3 with CloudFront distribution.
 
-The analytics tab showed zero data. I had 38 real conversations in DynamoDB but the frontend displayed "0 students, 0 questions." I tested the API directly with `aws lambda invoke` and it returned perfect data. The browser was blocking it. Claude Code found the bug: the OPTIONS preflight request returned CORS headers (from API Gateway config), but the actual POST response from the Lambda didn't include `Access-Control-Allow-Origin`. The browser's security model blocks responses without that header. It added `CORS_HEADERS` to all Lambda return paths (success, error, validation), redeployed, and the dashboard populated with 38 students, 42 questions, and trending topics (aws basics: 12, verification: 9, credits: 8, builder center: 7, profile: 4, console: 2). The entire debugging loop from discovery to verified fix took 8 minutes. Two commits: cd022bb for CORS, 7709263 for a follow-up tool execution validation error.
+The analytics tab showed zero data. I had 38 test conversations in DynamoDB (simulated during development to test the analytics aggregation) but the frontend displayed "0 students, 0 questions." I tested the API directly with `aws lambda invoke` and it returned perfect data. The browser was blocking it. Claude Code found the bug: the OPTIONS preflight request returned CORS headers (from API Gateway config), but the actual POST response from the Lambda didn't include `Access-Control-Allow-Origin`. The browser's security model blocks responses without that header. It added `CORS_HEADERS` to all Lambda return paths (success, error, validation), redeployed, and the dashboard populated with 38 students, 42 questions, and trending topics (aws basics: 12, verification: 9, credits: 8, builder center: 7, profile: 4, console: 2). The entire debugging loop from discovery to verified fix took 8 minutes. Two commits: cd022bb for CORS, 7709263 for a follow-up tool execution validation error.
 
 **Day 6: The Custom Domain**
 I bought `studentpathos.live` on Name.com (free with hackathon offer, normally $43.99/year) and wanted HTTPS. Claude Code walked me through ACM certificate creation in us-east-1 (required for CloudFront), DNS validation (I added the CNAME records manually), and CloudFront alias configuration with SNI (free, versus $600/month for a dedicated IP). It waited for certificate 76dcaeaa-4b44-407d-a33a-d7e83b7106ea to reach ISSUED status, updated CloudFront distribution E3LL3O0DGZ287X with the alternate domain name, and confirmed the site was live. When I tested, I got a DNS resolution error because I hadn't updated Name.com's nameservers yet. Claude Code caught that, I updated the nameservers to point to CloudFront, and 2 minutes later `https://studentpathos.live` loaded with a valid certificate.
@@ -168,7 +168,7 @@ Complete deployed infrastructure showing:
 - Bedrock AI layer with Guardrail configuration
 - All service connections (API Gateway, AppSync, CloudFront, S3, ACM)
 - Observability metrics (CloudWatch namespace: StudentPathOS/Agent)
-- Cost analysis ($50/month for 247 students = $0.20 per student)
+- Cost analysis ($77/month for 400 students = $0.19 per student)
 
 ### Complete Evidence Package
 **https://github.com/donaldraph/studentpathos-docs/blob/main/DOCUMENTED-PROOF.md**
